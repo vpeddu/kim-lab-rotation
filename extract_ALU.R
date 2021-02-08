@@ -1,9 +1,12 @@
-library(readxl)
+#library(readxl)
 
-setwd('/Users/vikas/Documents/UCSC/rotations/Kim/kim-lab-rotation')
-covid <- readxl::read_excel('/Users/vikas/Documents/UCSC/rotations/Kim/te_de/significant_subset.xlsx', sheet = 1)
+#setwd('/Users/vikas/Documents/UCSC/rotations/Kim/kim-lab-rotation')
 
-covid<-covid[covid$family == 'Alu',]
+covid<-read.csv('covid_v_ctrl_te.ip.table.csv')
+covid<-covid[covid$log2FoldChange > 1 && covid$padj < 0.05 && covid$family == 'Alu',]
+
+#covid <- readxl::read_excel('/Users/vikas/Documents/UCSC/rotations/Kim/te_de/significant_subset.xlsx', sheet = 1)
+
 
 covid$newname <- paste0(covid$gene,'_range=',covid$chr,':',covid$start,'-',covid$end)
 
