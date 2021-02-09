@@ -1,5 +1,6 @@
 library('ape')
 library('ggtree')
+library('viridis')
 library('tidyverse')
 library("ComplexHeatmap")
 
@@ -35,20 +36,27 @@ metadata<-metadata[metadata$uniqueName %in% covidTree$tip.label,]
 #rownames(metadata)<-metadata$uniqueName
 #metadata$uniqueName<-NULL
 
-newtree<-ggtree(covidTree) +    
-  geom_tiplab(size=1.5, align=FALSE, linesize=.5) + 
-  scale_x_ggtree() 
-  #theme_tree2() 
+metadata$subfamily<-substr(covidTree$tip.label, start = 4, stop = 4)
 
-# newtree+ 
+newtree<-ggtree(covidTree) %<+% metadata +    
+  geom_tiplab(size=1.5, align=FALSE, linesize=.5) + 
+  theme_tree2() + 
+  #geom_tiplab(offset = .6, hjust = .5) +
+  geom_tippoint(aes(color = subfamily)) +
+  theme(legend.position = "right") + scale_size_continuous(range = c(3, 10)) + 
+  scale_color_viridis(discrete=TRUE) 
+  #scale_color_manual(values = c("#E7B800","#FC4E07", "darkgreen"))
+
+ newtree
 #   geom_facet(panel = "Trait", data = metadata, geom=geom_segment)
 
 
 
 p3 <- facet_plot(newtree, panel='Average Count', data=metadata, geom=geom_segment, 
-                 aes(x=0, xend = avg_count, yend = y), size=3, color='blue4') 
+                 aes(x=0, xend = metadata$avg_count, yend = y),color = '#39568CFF', size=3) 
+p3
 
-p3 + facet_widths(p3, c('Average Count'  = .5))
+facet_widths(p3, c('Average Count'  = .3))
 
 ggsave(p3, height = 10, width = 10)
 
