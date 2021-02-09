@@ -1,6 +1,6 @@
 #library(readxl)
 
-#setwd('/Users/vikas/Documents/UCSC/rotations/Kim/kim-lab-rotation')
+setwd('/Users/vikas/Documents/UCSC/rotations/Kim/kim-lab-rotation')
 
 covid<-read.csv('covid_v_ctrl_te.ip.table.csv')
 covid<-covid[covid$log2FoldChange > 1 && covid$padj < 0.05 && covid$family == 'Alu',]
