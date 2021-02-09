@@ -1,6 +1,7 @@
 library('ape')
 library('ggtree')
 library('viridis')
+library('reshape2')
 library('tidyverse')
 library("ComplexHeatmap")
 
@@ -60,24 +61,23 @@ facet_widths <- function(p, widths) {
 
 metadata$subfamily<-substr(metadata$id, start = 4, stop = 4)
 metadata$id<-metadata$id
-#metadata$id<-NULL
+f<-metadata
 f<-melt(f)
 newtree<-ggtree(covidTree) %<+% metadata +    
   geom_tiplab(size=1.5, align=FALSE, linesize=.5) + 
-  #ggtitle('Covid Alus') + 
+  #ggtitle('panc Alus') + 
   theme_tree2() + 
   #geom_tiplab(offset = .6, hjust = .5) +
   geom_tippoint(aes(color = subfamily)) +
   theme(legend.position = "right") + scale_size_continuous(range = c(3, 10)) + 
   geom_facet(panel = "Average count", data = f, geom = ggstance::geom_barh,
-            aes(x = avg_count, y = y), fill = "#39568CFF", 
-           stat = "identity") +
+             aes(x = avg_count, y = y), fill = "#39568CFF", 
+             stat = "identity", limits = c(0,200)) +
+  xlim_expand(c(0, 250), 'Average count') +
   scale_color_viridis(discrete=TRUE) 
+newtree + facet_widths(newtree, widths = c(3,1))
 
- #facet_widths(newtree, c('Average Count'  = .3))
- newtree + facet_widths(newtree, widths = c(3,1))
- newtree
-
+newtree
 # 
 # f = metadata
 #  facet_plot(newtree,inherit.aes= TRUE,  panel='Average Count',
