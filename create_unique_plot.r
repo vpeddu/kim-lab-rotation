@@ -7,14 +7,14 @@ library("ComplexHeatmap")
 
 
 
-setwd('/Users/vikas/Documents/UCSC/rotations/Kim/kim-lab-rotation/unique_plot')
+setwd('/public/groups/kimlab/vikas/panc_unique')
 
-covid_file<-read.csv('/Users/vikas/Documents/UCSC/rotations/Kim/te_de/covid_v_ctrl_te.ip.table.csv')
+covid_file<-read.csv('/public/groups/kimlab/vikas/covid_v_ctrl_te.ip.table.csv')
 covid<-covid_file[covid_file$log2FoldChange > 1 & covid_file$padj < 0.05 & covid_file$family == 'Alu',]
 covid$id <- paste0(covid$gene,'_range=',covid$chr,':',covid$start,'-',covid$end)
 
 
-panc_file<-read.csv('/Users/vikas/Documents/UCSC/rotations/Kim/te_de/panc_v_ctrl_te.ip.table.csv')
+panc_file<-read.csv('/public/groups/kimlab/vikas/panc_v_ctrl_te.ip.table.csv')
 panc<-panc_file[panc_file$log2FoldChange > 1 & panc_file$padj < 0.05 & panc_file$clade == 'SINE',]
 panc$id <- paste0(panc$gene,'_range=',panc$chr,':',panc$start,'-',panc$end)
 
@@ -36,7 +36,7 @@ for (i in 1:nrow(pancUnique)){
 }
 # mafft align
 print('aligning')
-  align = paste0('MAFFT panc_unique_alu_subset.fasta > panc_unique_alu_aligned.fasta')
+  align = paste0('mafft panc_unique_alu_subset.fasta > panc_unique_alu_aligned.fasta')
   system(align)
 # fasttree? 
 print('building tree')
