@@ -1,22 +1,12 @@
-FROM ubuntu:18.04
+# Base image https://hub.docker.com/u/rocker/
+FROM rocker/r-base:latest
 
-# Install dependencies
+RUN apt-get -y update && apt-get install -y default-jdk r-cran-rjava r-cran-nloptr libssh2-1-dev
 
-RUN apt update && \
-  apt-get install -y nginx git python-setuptools python-dev && \
-  apt install -y python-pip wget unzip && \
-  pip install pysam==0.10.0 
+RUN R -e "install.packages('BiocManager')"
+RUN R -e "install.packages('ape',dependencies=TRUE, repos='http://cran.rstudio.com/')"
+RUN R -e "BiocManager::install('ggtree')"
+RUN R -e "BiocManager::install('viridis')"
+RUN R -e "BiocManager::install('reshape2')"
+RUN R -e "BiocManager::install('tidyverse')"
 
-# Get Opossum python files
-
-RUN wget https://github.com/BSGOxford/Opossum/archive/master.zip -O Opossum.zip && \
-  unzip Opossum.zip
-
-CMD ["/bin/bash"]
-#RUN apt update && \
-    #apt install -y python pip #&& \
-    #pip install biopython \
-    #             pysam==0.10.0 \
-    #             pandas 
-
-# Install dependencies from conda 

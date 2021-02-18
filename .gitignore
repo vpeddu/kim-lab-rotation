@@ -1,3 +1,4 @@
 *.fasta
 *.bam
-
+work/*
+.nextflow.log*
