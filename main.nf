@@ -73,99 +73,28 @@ process mafft{
     """
 }
 
+process raxml{ 
+    container 'staphb/raxml'
+    containerOptions = "--user root"
+    publishDir("${params.output}/raxml")
 
+    cpus 4
+    memory: 
 
+    input:
+    tuple val(base), file(alignedFasta) from mafftOutCh
+    output: 
+    tuple val("${base}"), file("*bestTree*") into raxmlOutCh
+    """
+    #!/bin/bash
 
-// process runOpossum {
-//     container 'quay.io/vpeddu/u2af1-allele-bias:latest'
-//     containerOptions = "--user root"
-//     publishDir "${params.output}/Opossum" //, mode: 'symlink'
-//     //cpus 1
-//     //memory 16.GB
-//     input:
-//     tuple val(base), file(bam),file(bamIndex) from hiSat2Out_ch
-//     file index from fastaIndex_ch
-//     file referenceFasta
-//     //tuple val(base), file(bam) from samtoolsOut_ch
+    ls -lah
 
-//     output: 
-//     tuple val("${base}"), file("${base}.opossum.bam")  into opossumOut_ch
-//     file "${index}" into opossumFastaIndex_ch
-
-//     """
-//     #!/bin/bash
-//     # logging
-//     ls -lah
-
-//     outfilename="${base}"".opossum.bam"
-//     echo "output file name is \$outfilename"
-    
-//     # not sure why this is even necessary but fixed the file not found error
-//     touch \$outfilename
-
-//     python2.7 /Opossum-master/Opossum.py --BamFile=${bam} --OutFile="\$outfilename"
-//     """
-// }
-
-
-// process samtoolsAddMD {
-//     container 'jweinstk/samtools:latest'
-//     containerOptions = "--user root"
-
-//     input:
-//     tuple val(base), file(bam)  from opossumOut_ch
-
-//     output: 
-//     //tuple env(outfilename), file("*.MD.bam"), file("*.fai"), file("*.bai") into samtoolsOut_ch
-//     tuple val("${base}"), file ("${bam}"), file("${base}.opossum.bam.bai")  into fileIndex_ch
-
-//     """
-//     #!/bin/bash
-//     # logging
-//     ls -lah
-
-//     touch ${base}.opposum.bam.bai
-
-//     # needed for platypus to run  
-//     samtools index -@ ${task.cpus} ${bam} ${base}.opossum.bam.bai
-//     """
-// }
-
-// process runPlatypus {
-//     container 'iarcbioinfo/platypus-nf'
-//     containerOptions = "--user root"
-//     publishDir "${params.output}/Platypus" , mode: 'copy', overwrite: true
-//     //cpus 1
-//     //memory 16.GB
-//     input:
-//     tuple val(base), file(bam), file(bamIndex) from fileIndex_ch
-//     //tuple val(base), file(bam) from opossumOut_ch.groupTuple().join(fileIndex_ch )
-//     //tuple val(base) file(fastaIndex), file(bamindex) from fileIndex_ch
-//     file index from opossumFastaIndex_ch
-//     file referenceFasta
- 
-//     output: 
-//     file "${base}.platypus.vcf" 
-//     file "${bamIndex}"
-//     file "${bam}"
-
-//     """
-//     #!/bin/bash
-//     # logging
-//     ls -lah
-
-
-
-//     platypus callVariants \
-//         --bamFiles ${bam} \
-//         --refFile ${referenceFasta} \
-//         --filterDuplicates 0 \
-//         --minMapQual 0 \
-//         --minFlank 0 \
-//         --maxReadLength 500 \
-//         --minGoodQualBases 10 \
-//         --minBaseQual 20 \
-//         -o ${base}.platypus.vcf
-//     """
-// }
+    sed 's/\\:/__/g' ${alignedFasta} > ugh.fasta
+    sed "s/'/___/g" ugh.fasta > ughh.fasta
+    echo 'tree building'
+    #FastTree -gtr -nt < ugh.fasta > ${base}.unique.alu.tree.newick
+    raxmlHPC-PTHREADS -m "GTRCATX" -p 420 -T ${task.cpus} -s ughh.fasta -n ${base}.unique.alu.tree.newick
+    """
+}
 
