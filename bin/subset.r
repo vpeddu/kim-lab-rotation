@@ -20,7 +20,7 @@ overlap <- panc$id[panc$id %in% covid$id]
 
 pancUnique<-panc[! (panc$id %in% covid$id),]
 
-covidUnique<-panc[! (covid$id %in% panc$id),]
+covidUnique<-covid[! (covid$id %in% panc$id),]
 
 
 write.table(covidUnique$id, file = "covidUnique.txt", sep = "\n",
