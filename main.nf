@@ -17,7 +17,7 @@ process RSubset{
     container 'quay.io/vpeddu/kim-lab-rotation:latest'
     containerOptions = "--user root"
     publishDir("${params.output}/CsvSubsets")
-
+    beforeScript 'chmod o+rw .'
     cpus 1 
 
     input:
