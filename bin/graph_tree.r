@@ -65,7 +65,7 @@ newtree<-ggtree(pancTree) %<+% metadata +
   theme(legend.position = "right") + scale_size_continuous(range = c(3, 10)) + 
   geom_facet(panel = "Average count", data = f, geom = ggstance::geom_barh,
             aes(x = avg_count, y = y), fill = "#39568CFF", 
-           stat = "identity", limits = c(0,200)) +
+           stat = "identity", limits = c(0,200))  + 
   xlim_expand(c(0, 120), 'Average count') +
   scale_color_viridis(discrete=TRUE) 
  newtree + facet_widths(newtree, widths = c(3,1))
@@ -74,3 +74,14 @@ newtree<-ggtree(pancTree) %<+% metadata +
 pdf(file = filename,   width = 10,  height = 10) 
 newtree
 dev.off() 
+
+# top 5 highest expressed 
+top5 = (metadata[order(metadata$avg_count, decreasing = TRUE),][1:5,])
+
+write.table(top5, file = paste0(args[2],".top_genes.txt"), sep = "\t",
+            row.names = FALSE,
+            col.names = FALSE,
+            quote = FALSE)
+
+save.image(file = paste0(args[2],Sys.time(),'.rds'))
+

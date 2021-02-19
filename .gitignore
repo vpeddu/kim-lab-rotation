@@ -2,3 +2,4 @@
 *.bam
 work/*
 .nextflow.* 
+*.rds

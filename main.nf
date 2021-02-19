@@ -84,6 +84,7 @@ process raxml{
     tuple val(base), file(alignedFasta) from mafftOutCh
     output: 
     tuple val("${base}"), file("*bestTree*") into raxmlOutCh
+    tuple val("${base}"), file("${alignedFasta}") into fastaCollectCh
     """
     #!/bin/bash
 
@@ -108,13 +109,21 @@ process treeFigure{
     input:
     tuple val(base), file(treeFile) from raxmlOutCh
     tuple file(covidfiltered), file(pancfiltered) from filteredCSVCh
+    file unwrappedFasta
+
     output: 
-    tuple val("${base}"), file("*.pdf") into figureOutCh
+    tuple val("${base}"), file("*.pdf"), file("${base}.topgenes.fasta") into figureOutCh
+    file ('*.rds') into rDataCh
     """
     #!/bin/bash
 
-    
     Rscript --vanilla ${baseDir}/bin/graph_tree.r ${treeFile} ${base}
 
+    sed 's/__/\\:/g' ${base}.top_genes.txt > ugh.txt
+
+    for line in `cat ugh.txt | cut -f1`
+    do
+    grep -A1 \$line ${unwrappedFasta} >> ${base}.topgenes.fasta
+    done
     """
 }
