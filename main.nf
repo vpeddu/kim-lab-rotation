@@ -50,7 +50,9 @@ process RSubset{
 process mafft{ 
     container 'staphb/mafft:7.475'
     containerOptions = "--user root"
+    beforeScript 'chmod o+rw .'
     publishDir("${params.output}/mafftOut")
+
 
     cpus 4
     memory: 
@@ -75,6 +77,7 @@ process mafft{
 process raxml{ 
     container 'staphb/raxml'
     containerOptions = "--user root"
+    beforeScript 'chmod o+rw .'
     publishDir("${params.output}/raxml")
 
     cpus 4
@@ -101,6 +104,7 @@ process raxml{
 process treeFigure{ 
     container 'quay.io/vpeddu/kim-lab-rotation:latest'
     containerOptions = "--user root"
+    beforeScript 'chmod o+rw .'
     publishDir("${params.output}/treeFigures")
 
     cpus 1
