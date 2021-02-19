@@ -32,6 +32,8 @@ write.table(pancUnique$id, file = "pancUnique.txt", sep = "\n",
             col.names = FALSE,
             quote = FALSE)
 
+write.csv(file = 'covid_filtered.csv',covidUnique)
+write.csv(file = 'panc_filtered.csv',pancUnique)
 # cat(capture.output(print(covidUnique$id), file="covidUnique.txt"))
 # cat(capture.output(print(pancUnique$id), file="pancUnique.txt"))
 

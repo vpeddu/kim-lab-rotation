@@ -13,7 +13,6 @@ unwrappedFasta = file("${params.unwrappedFasta}")
 
 //input_read_ch.view()
 
-
 process RSubset{ 
     container 'quay.io/vpeddu/kim-lab-rotation:latest'
     containerOptions = "--user root"
@@ -26,8 +25,8 @@ process RSubset{
     file pancCsv
     file unwrappedFasta
     output: 
-    //tuple val("${base}"), file("${base}.trimmed_val_1.fq.gz"), file("${base}.trimmed_val_2.fq.gz") into trimOut_ch
     file "*.fasta" into subsetoutCh
+    tuple file('covid_filtered.csv'), file('panc_filtered.csv') into filteredCSVCh
     """
     #!/bin/bash
 
@@ -98,3 +97,24 @@ process raxml{
     """
 }
 
+process treeFigure{ 
+    container 'quay.io/vpeddu/kim-lab-rotation:latest'
+    containerOptions = "--user root"
+    publishDir("${params.output}/treeFigures")
+
+    cpus 1
+    memory: 
+
+    input:
+    tuple val(base), file(treeFile) from raxmlOutCh
+    tuple file(covidfiltered), file(pancfiltered) from filteredCSVCh
+    output: 
+    tuple val("${base}"), file("*.pdf") into figureOutCh
+    """
+    #!/bin/bash
+
+    
+    Rscript --vanilla ${baseDir}/bin/graph_tree.r ${treeFile} ${base}
+
+    """
+}
