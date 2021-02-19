@@ -54,7 +54,7 @@ process mafft{
     publishDir("${params.output}/mafftOut")
 
 
-    cpus 4
+    cpus 12
     memory: 
 
     input:
@@ -80,7 +80,7 @@ process raxml{
     beforeScript 'chmod o+rw .'
     publishDir("${params.output}/raxml")
 
-    cpus 4
+    cpus 12
     memory: 
 
     input:
