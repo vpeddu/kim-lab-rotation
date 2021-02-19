@@ -7,9 +7,10 @@ library('tidyverse')
 args = commandArgs(trailingOnly=TRUE)
 
 
-
+print(paste0('reading tree', args[1]))
 pancTree<-read.tree(args[1])
 csvfilename = paste0(args[2],'_filtered.csv')
+print(paste0('reading csv', csvfilename))
 panc<-read.csv(csvfilename)
 
 

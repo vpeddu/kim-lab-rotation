@@ -97,7 +97,7 @@ process raxml{
     sed "s/'/___/g" ugh.fasta > ughh.fasta
     echo 'tree building'
     #FastTree -gtr -nt < ugh.fasta > ${base}.unique.alu.tree.newick
-    raxmlHPC-PTHREADS -m "GTRCATX" -p 420 -T ${task.cpus} -s ughh.fasta -n ${base}.unique.alu.tree.newick
+    raxmlHPC-PTHREADS -m "GTRCATX" -p 12345 -T ${task.cpus} -s ughh.fasta -n ${base}.unique.alu.tree.newick
     """
 }
 
@@ -120,6 +120,8 @@ process treeFigure{
     file ('*.rds') into rDataCh
     """
     #!/bin/bash
+
+    echo "running ${base}"
 
     Rscript --vanilla ${baseDir}/bin/graph_tree.r ${treeFile} ${base}
 
