@@ -7,12 +7,12 @@
 args = commandArgs(trailingOnly=TRUE)
 
 covid_file<-read.csv(args[1])
-covid<-covid_file[covid_file$log2FoldChange > 1 & covid_file$padj < 0.05 & covid_file$family == 'Alu',]
+covid<-covid_file[covid_file$log2FoldChange > 1 & covid_file$padj < 0.05 & covid_file$clade == 'LINE',]
 covid$id <- paste0(covid$gene,'_range=',covid$chr,':',covid$start,'-',covid$end)
 
 
 panc_file<-read.csv(args[2])
-panc<-panc_file[panc_file$log2FoldChange > 1 & panc_file$padj < 0.05 & panc_file$clade == 'SINE',]
+panc<-panc_file[panc_file$log2FoldChange > 1 & panc_file$padj < 0.05 & panc_file$clade == 'LINE',]
 panc$id <- paste0(panc$gene,'_range=',panc$chr,':',panc$start,'-',panc$end)
 
 
