@@ -51,7 +51,7 @@ facet_widths <- function(p, widths) {
 
 
 filename = paste0(args[2], '_unique_alu_tree_plot.pdf')
-metadata$subfamily<-substr(metadata$id, start = 4, stop = 4)
+metadata$subfamily<-substr(metadata$id, start = 1, stop = 3)
 metadata$id<-metadata$id
 f<-metadata
 f<-melt(f)
