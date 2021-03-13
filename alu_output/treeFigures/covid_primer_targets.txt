@@ -1,0 +1,94 @@
+hg38_rmsk_AluSq2_range=chr4:49273546-49273752_5'pad=0_3'pad=0_strand=+_repeatMasking=none
+LEFT PRIMER         16   21   57.67   47.62    0.00   0.00    0.00 CACATGCCTATAATCCGAGCT
+RIGHT PRIMER       119   20   59.01   50.00    0.00   0.00    0.00 TGGGAGAGCAATGGTGTGAT
+SEQUENCE SIZE: 148
+INCLUDED REGION SIZE: 148
+
+PRODUCT SIZE: 104, PAIR ANY_TH COMPL: 0.00, PAIR 3'_TH COMPL: 0.00
+
+    1 AGCCAAGCACGGTGGCACATGCCTATAATCCGAGCTACTCGGGAAGCTGAGGCAGGAGAA
+                     >>>>>>>>>>>>>>>>>>>>>                        
+
+   61 TCGCTTGAACCCGGGAGGCAGAAGTTGTAGTGAGCCGAGATCACACCATTGCTCTCCCAC
+                                             <<<<<<<<<<<<<<<<<<<< 
+
+  121 CTCAGCGACAAGAGCGAAACTCCTTCTG
+                                  
+hg38_rmsk_AluYa5_range=chr5:95492355-95492697_5'pad=0_3'pad=0_strand=+_repeatMasking=none
+LEFT PRIMER         71   20   58.68   55.00    0.00   0.00    0.00 AAGAGATCGAGACCATCCCG
+RIGHT PRIMER       205   19   59.20   57.89    0.00   0.00    0.00 GTTCACGCCATTCTCCTGC
+SEQUENCE SIZE: 282
+INCLUDED REGION SIZE: 282
+
+PRODUCT SIZE: 135, PAIR ANY_TH COMPL: 0.00, PAIR 3'_TH COMPL: 0.00
+
+    1 GGCCGGGCGCGGTGGCTCACGCCTGTAATCCCAGCACTTTGGGAGGCCGAGGCGGGCGGA
+                                                                  
+
+   61 TCACGAGGTCAAGAGATCGAGACCATCCCGGCTAAAACGGTGAAACCCCGTCTCTACTAA
+                >>>>>>>>>>>>>>>>>>>>                              
+
+  121 AAATACAAAAAAATTAGCCGGGCGTAGTGGCGGGCGCCTGTAGTCCCAGCTACTTGGGAG
+                                                                  
+
+  181 GCTGAGGCAGGAGAATGGCGTGAACCCGGGAGGCGGAGCTTGCAGTGAGCCGAGATCCCG
+            <<<<<<<<<<<<<<<<<<<                                   
+
+  241 CCACTGCACTCCAGCCTGGGCGACAGAGCGAGACTCCGTCTC
+
+
+hg38_rmsk_AluJo_range=chr12:57102944-57103162_5'pad=0_3'pad=0_strand=-_repeatMasking=none
+NONE FOUND 
+
+
+hg38_rmsk_AluJr_range=chr12:95571156-95571496_5'pad=0_3'pad=0_strand=+_repeatMasking=none
+LEFT PRIMER         91   20   58.27   50.00    0.00   0.00    0.00 GCAACATAGCAAGACCTCGT
+RIGHT PRIMER       243   20   58.96   55.00    0.00   0.00    0.00 TCAAGCGATCCTCCCATCTC
+SEQUENCE SIZE: 341
+INCLUDED REGION SIZE: 341
+
+PRODUCT SIZE: 153, PAIR ANY_TH COMPL: 0.00, PAIR 3'_TH COMPL: 0.00
+
+    1 CTGGGCATGGTAGCTCATGCTTGTAGTCTCAGCACTTTGGAGGCCCAGGCAAGAGGATTG
+                                                                  
+
+   61 CTTGAGTTTAGAAGTTTGAGACCAGCCTGGGCAACATAGCAAGACCTCGTCTCTACTAAA
+                                    >>>>>>>>>>>>>>>>>>>>          
+
+  121 CATAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGC
+                                                                  
+
+  181 TGAACATGGTGGCACGCCTGTAGTCCCAGCTACTTGAGAGGTTGAGATGGGAGGATCGCT
+                                                 <<<<<<<<<<<<<<<<<
+
+  241 TGAGCCTGGGAGATCAAGGCTGCAGTGAGCTAAGATTGCACCATTGCACTCCAGCTGGGT
+      <<<                                                         
+
+  301 GGCAGAGTGAGACCCTATCTCTAAAAAAAAAATGTAAAAAA
+
+
+
+hg38_rmsk_AluSz6_range=chr10:86452759-86453075_5'pad=0_3'pad=0_strand=+_repeatMasking=none7
+LEFT PRIMER         70   20   59.04   55.00    4.14   4.42    0.00 CCAGGAGTTTGAAACCAGCC
+RIGHT PRIMER       169   19   59.40   57.89    0.00   0.00    0.00 GCTGGGACTGTAGGCATGT
+SEQUENCE SIZE: 317
+INCLUDED REGION SIZE: 317
+
+PRODUCT SIZE: 100, PAIR ANY_TH COMPL: 4.45, PAIR 3'_TH COMPL: 2.39
+
+    1 GCCAGACGCAATAGCTCATACCTGTAATCCCACCACTTTGGGAGGCTGAGGCGGGCAGAT
+                                                                  
+
+   61 CACTTGAGGCCAGGAGTTTGAAACCAGCCTTGGCAACATGGCAAAACCCCGTCTCTACTA
+               >>>>>>>>>>>>>>>>>>>>                               
+
+  121 AAAATACAAAAATTAGCCAGGCGTGGTGGCACATGCCTACAGTCCCAGCACCTGGAAGGC
+                                    <<<<<<<<<<<<<<<<<<<           
+
+  181 TGAGGCAGGAGAACTGCTTGAACCAGGGAGGCGGAGGTTGCAGTGAGCCAAGATGTTGCC
+                                                                  
+
+  241 ACTGTAGACTCCATCTCCCAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
+                                                                  
+
+  301 AAAAAAAAAAAAAGAAA
