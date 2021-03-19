@@ -4,4 +4,8 @@ work/*
 .nextflow.* 
 *.rds
 *.zip
-
+idt_primer_design/
+*.pdf
+*.csv
+*.txt
+*.jpeg
